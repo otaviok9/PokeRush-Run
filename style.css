@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ajuda no cálculo de dimensões */
+}
+
+body {
+    background-image: url('./imgs/fundo_jogo.png');
+    background-size: cover;          /* Faz a imagem cobrir a tela toda */
+    background-position: center;     /* Centraliza a imagem */
+    background-repeat: no-repeat;    /* Impede que a imagem se repita */
+    background-attachment: fixed;    /* Deixa o fundo fixo ao rolar */
+    color: rgb(186, 186, 186);
+    height: 100vh;                   /* Garante que o body tenha a altura da tela */
+    overflow: hidden;                /* Evita barras de rolagem desnecessárias */
+}
+
+canvas {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* O gradiente aqui só aparece se o canvas for transparente */
+    background: linear-gradient(#1a1a1a, #3a3a3a); 
+    box-shadow: 0 0 20px rgba(0,0,0,0.5); /* Adicionei uma sombra para destacar o jogo do fundo */
+}
