@@ -1,6 +1,6 @@
 # PokéRush Run
 
-![Banner](./img/fundo_fase1.png)
+![Banner](./img/fundo_jogo.png)
 
 ## 1. Identificação do Projeto
 
@@ -15,13 +15,13 @@
 ### Descrição
 O jogo desenvolvido consiste em uma experiência 2D em tempo real, inspirada em elementos visuais do universo Pokémon, com foco em mecânicas de desvio e captura de itens. O jogador controla um personagem posicionado no lado esquerdo da tela, podendo se movimentar verticalmente (para cima e para baixo) com o objetivo de evitar obstáculos e capturar Pokémons pelo caminho.
 
-Durante a execução do jogo, diversos objetos são gerados dinamicamente no lado direito da tela e se deslocam em direção ao personagem. Esses objetos são classificados em dois tipos principais: obstáculos e itens coletáveis. Os obstáculos, representados por pedras, causam a perda de uma vida ao colidir com o jogador. Já os itens coletáveis são Pokémons — Pikachu, Greninja e Rayquaza — que ao serem capturados somam pontos e recuperam uma vida do jogador.
+Durante a execução do jogo, diversos objetos são gerados dinamicamente no lado direito da tela e se deslocam em direção ao personagem. Esses objetos são classificados em dois tipos principais: obstáculos e itens coletáveis. Os obstáculos, representados por pedras, causam a perda de uma vida ao colidir com o jogador. Já os itens coletáveis são Pokémons, Pikachu, Greninja e Charlizard que ao serem capturados somam pontos e recuperam uma vida do jogador.
 
 ### Objetivo
 Sobreviver às 3 fases do jogo desviando de pedras e capturando Pokémons, acumulando pontos e mantendo ao menos 1 vida até o final.
 
 ### Tema
-Jogo de corrida 2D com tema Pokémon. O jogador controla o Ash atravessando três cenários diferentes — floresta, frente da caverna e interior da caverna — enfrentando desafios crescentes a cada fase.
+Jogo de corrida 2D com tema Pokémon. O jogador controla o Ash atravessando três cenários diferentes como: floresta, frente da caverna e interior da caverna, enfrentando desafios crescentes a cada fase.
 
 ---
 
@@ -76,7 +76,7 @@ Completar a Fase 3 atingindo 1000 pontos com pelo menos 1 vida restante.
 - **Desenvolvedor:** Paulo Otávio
 - **Professor Orientador:** Professor Carlos
 - **Disciplina:** Programação Orientada a Objetos
-- **Tecnologias:** HTML5, Canvas API, JavaScript ES6+
+- **Tecnologias:** HTML, Canvas API, JavaScript
 
 ---
 

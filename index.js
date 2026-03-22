@@ -11,9 +11,9 @@ let inimigo4 = new Inimigo(1900, 200, 90, 90, './img/pedra1.png')
 let inimigo5 = new Inimigo(2100, 400, 90, 90, './img/pedra2.png')
 
 // Pokémons coletáveis
-let item1 = new Item(1400, 150, 90, 90, './img/pok1.png')
-let item2 = new Item(1700, 350, 90, 90, './img/pok2.png')
-let item3 = new Item(2000, 500, 90, 90, './img/pok3.png')
+let item1 = new Item(1400, 150, 100, 110, './img/pok1.png')
+let item2 = new Item(1700, 350, 110, 100, './img/pok2.png')
+let item3 = new Item(2000, 500, 110, 100, './img/pok3.png')
 
 // Fundo
 let fundo = new Fundo(0, 0, 1200, 700, './img/fundo_fase1.png')
