@@ -7,8 +7,8 @@ let player = new Player(100, 300, 110, 110, './img/player.png')
 let inimigo1 = new Inimigo(1300, 100, 90, 90, './img/pedra1.png')
 let inimigo2 = new Inimigo(1500, 300, 90, 90, './img/pedra2.png')
 let inimigo3 = new Inimigo(1700, 500, 90, 90, './img/pedra3.png')
-let inimigo4 = new Inimigo(1900, 200, 90, 90, './img/pedra1.png')
-let inimigo5 = new Inimigo(2100, 400, 90, 90, './img/pedra2.png')
+let inimigo4 = new Inimigo(1900, 200, 90, 90, './img/pedra4.png')
+let inimigo5 = new Inimigo(2100, 400, 90, 90, './img/pedra5.png')
 
 // Pokémons coletáveis
 let item1 = new Item(1400, 150, 100, 110, './img/pok1.png')
@@ -24,11 +24,11 @@ let telas = new Telas()
 
 // Sons
 let fundo_som = new Audio('./img/musica_fundo.mp3')
-let coletar = new Audio('./img/coletar.mp3')
-let batida = new Audio('./img/batida.mp3')
+let coletar = new Audio('./img/musica_coletar.mp3')
+let batida = new Audio('./img/musica_batida.mp3')
 fundo_som.volume = 0.5
 fundo_som.loop = true
-coletar.volume = 0.5
+coletar.volume = 1.0
 batida.volume = 0.5
 
 // Estados do jogo

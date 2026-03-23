@@ -15,7 +15,7 @@
 ### Descrição
 O jogo desenvolvido consiste em uma experiência 2D em tempo real, inspirada em elementos visuais do universo Pokémon, com foco em mecânicas de desvio e captura de itens. O jogador controla um personagem posicionado no lado esquerdo da tela, podendo se movimentar verticalmente (para cima e para baixo) com o objetivo de evitar obstáculos e capturar Pokémons pelo caminho.
 
-Durante a execução do jogo, diversos objetos são gerados dinamicamente no lado direito da tela e se deslocam em direção ao personagem. Esses objetos são classificados em dois tipos principais: obstáculos e itens coletáveis. Os obstáculos, representados por pedras, causam a perda de uma vida ao colidir com o jogador. Já os itens coletáveis são Pokémons, Pikachu, Greninja e Charlizard que ao serem capturados somam pontos e recuperam uma vida do jogador.
+Durante a execução do jogo, diversos objetos são gerados dinamicamente no lado direito da tela e se deslocam em direção ao personagem. Esses objetos são classificados em dois tipos principais: obstáculos e itens coletáveis. Os obstáculos, representados por pedras, causam a perda de uma vida ao colidir com o jogador. Já os itens coletáveis são Pokémons, Pikachu, Greninja e Charizard que ao serem capturados somam pontos e recuperam uma vida do jogador.
 
 ### Objetivo
 Sobreviver às 3 fases do jogo desviando de pedras e capturando Pokémons, acumulando pontos e mantendo ao menos 1 vida até o final.
@@ -38,7 +38,7 @@ Jogo de corrida 2D com tema Pokémon. O jogador controla o Ash atravessando trê
 |------|--------|
 | Pikachu | +10 pontos e +1 vida |
 | Greninja | +10 pontos e +1 vida |
-| Rayquaza | +10 pontos e +1 vida |
+| Charlizard | +10 pontos e +1 vida |
 
 ### Obstáculos
 | Item | Efeito |
