@@ -1,7 +1,7 @@
 let des = document.getElementById('des').getContext('2d')
 
 // Jogador
-let player = new Player(100, 300, 110, 110, './img/player.png')
+let player = new Player(100, 300, 120, 120, './img/player.png')
 
 // Inimigos (pedras)
 let inimigo1 = new Inimigo(1300, 100, 90, 90, './img/pedra1.png')
@@ -142,7 +142,7 @@ function ver_fase() {
         // Evolução: Pikachu, Frogadier, Charmeleon
         item1.a = './img/pikachu.png'
         item2.a = './img/frogadier.png'
-        item3.a = './img/chameleon.png'
+        item3.a = './img/charmeleon.png'
         ;[inimigo1, inimigo2, inimigo3, inimigo4, inimigo5].forEach(i => i.vel = 6)
     } else if (player.pontos > 600 && fase === 2) {
         fase = 3
@@ -206,6 +206,7 @@ function atualiza() {
     telas.atualiza()
     if (tela === 'jogando') {
         player.mov_player()
+        player.anim('player')
         inimigo1.mov_inimigo()
         inimigo2.mov_inimigo()
         inimigo3.mov_inimigo()
