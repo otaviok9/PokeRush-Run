@@ -180,7 +180,7 @@ class Telas {
             { texto: 'Pedra que passa = +5 pts', cor: 'white', tamanho: '11px' },
             { texto: '', cor: 'white', tamanho: '11px' },
             { texto: '🗺️ FASES', cor: '#4fc3f7', tamanho: '14px' },
-            { texto: 'Fase 1: 0pts  Fase 2: 300pts  Fase 3: 600pts', cor: 'white', tamanho: '10px' },
+            { texto: 'Fase 1: 0pts  Fase 2: 300pts  Fase 3: 600pts, o jogo acaba quando o usuário chegar a 1000 pontos', cor: 'white', tamanho: '10px' },
         ]
 
         linhas.forEach((linha, i) => {

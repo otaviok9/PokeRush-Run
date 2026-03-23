@@ -10,10 +10,10 @@ let inimigo3 = new Inimigo(1700, 500, 90, 90, './img/pedra3.png')
 let inimigo4 = new Inimigo(1900, 200, 90, 90, './img/pedra4.png')
 let inimigo5 = new Inimigo(2100, 400, 90, 90, './img/pedra5.png')
 
-// Pokémons coletáveis
-let item1 = new Item(1400, 150, 100, 110, './img/pikachu.png')
-let item2 = new Item(1700, 350, 110, 100, './img/greninja.png')
-let item3 = new Item(2000, 500, 110, 100, './img/charizard.png')
+// Pokémons coletáveis - fase 1: Pichu, Froakie, Charmander
+let item1 = new Item(1400, 150, 90, 90, './img/pichu.png')
+let item2 = new Item(1700, 350, 90, 90, './img/froakie.png')
+let item3 = new Item(2000, 500, 90, 90, './img/charmander.png')
 
 // Fundo
 let fundo = new Fundo(0, 0, 1200, 700, './img/fundo_fase1.png')
@@ -30,6 +30,8 @@ fundo_som.volume = 0.5
 fundo_som.loop = true
 coletar.volume = 1.0
 batida.volume = 0.5
+coletar.load()
+batida.load()
 
 // Estados do jogo
 let tela = 'menu'
@@ -67,13 +69,19 @@ function iniciar_jogo() {
     fase = 1
     fundo.a = './img/fundo_fase1.png'
 
+    // Volta para os Pokémons da fase 1
+    item1.a = './img/pichu.png'
+    item2.a = './img/froakie.png'
+    item3.a = './img/charmander.png'
+
     ;[inimigo1, inimigo2, inimigo3, inimigo4, inimigo5].forEach(i => {
-        i.vel = 2
+        i.vel = 4
         i.recomeca()
     })
     ;[item1, item2, item3].forEach(i => i.recomeca())
 
     tela = 'jogando'
+    fundo_som.currentTime = 0
     fundo_som.play()
 }
 
@@ -96,6 +104,7 @@ function colisao() {
     let pedras = [inimigo1, inimigo2, inimigo3, inimigo4, inimigo5]
     pedras.forEach(obj => {
         if (player.colid(obj)) {
+            batida.currentTime = 0
             batida.play()
             obj.recomeca()
             player.vida -= 1
@@ -105,6 +114,7 @@ function colisao() {
     let itens = [item1, item2, item3]
     itens.forEach(item => {
         if (player.colid(item)) {
+            coletar.currentTime = 0
             coletar.play()
             player.pontos += 10
             player.vida = Math.min(player.vida + 1, 5)
@@ -124,16 +134,24 @@ function pontuacao() {
     })
 }
 
-// Verifica troca de fase
+// Verifica troca de fase e evolução dos Pokémons
 function ver_fase() {
     if (player.pontos > 300 && fase === 1) {
         fase = 2
         fundo.a = './img/fundo_fase2.png'
-        ;[inimigo1, inimigo2, inimigo3, inimigo4, inimigo5].forEach(i => i.vel = 4)
+        // Evolução: Pikachu, Frogadier, Charmeleon
+        item1.a = './img/pikachu.png'
+        item2.a = './img/frogadier.png'
+        item3.a = './img/chameleon.png'
+        ;[inimigo1, inimigo2, inimigo3, inimigo4, inimigo5].forEach(i => i.vel = 6)
     } else if (player.pontos > 600 && fase === 2) {
         fase = 3
         fundo.a = './img/fundo_fase3.png'
-        ;[inimigo1, inimigo2, inimigo3, inimigo4, inimigo5].forEach(i => i.vel = 6)
+        // Evolução: Raichu, Greninja, Charizard
+        item1.a = './img/raichu.png'
+        item2.a = './img/greninja.png'
+        item3.a = './img/charizard.png'
+        ;[inimigo1, inimigo2, inimigo3, inimigo4, inimigo5].forEach(i => i.vel = 8)
     }
 }
 
