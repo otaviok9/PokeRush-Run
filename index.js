@@ -1,31 +1,30 @@
 let des = document.getElementById('des').getContext('2d')
 
 // Jogador
-let player = new Player(100, 300, 120, 120, './img/player.png')
+let player = new Player(100, 300, 120, 120, 'img/player_frame1.png')
 
 // Inimigos (pedras)
-let inimigo1 = new Inimigo(1300, 100, 90, 90, './img/pedra1.png')
-let inimigo2 = new Inimigo(1500, 300, 90, 90, './img/pedra2.png')
-let inimigo3 = new Inimigo(1700, 500, 90, 90, './img/pedra3.png')
-let inimigo4 = new Inimigo(1900, 200, 90, 90, './img/pedra4.png')
-let inimigo5 = new Inimigo(2100, 400, 90, 90, './img/pedra5.png')
+let inimigo1 = new Inimigo(1300, 100, 90, 90, 'img/pedra1.png')
+let inimigo2 = new Inimigo(1500, 300, 90, 90, 'img/pedra2.png')
+let inimigo3 = new Inimigo(1700, 500, 90, 90, 'img/pedra3.png')
+let inimigo4 = new Inimigo(1900, 200, 90, 90, 'img/pedra4.png')
+let inimigo5 = new Inimigo(2100, 400, 90, 90, 'img/pedra5.png')
 
-// Pokémons coletáveis - fase 1: Pichu, Froakie, Charmander
-let item1 = new Item(1400, 150, 90, 90, './img/pichu.png')
-let item2 = new Item(1700, 350, 90, 90, './img/froakie.png')
-let item3 = new Item(2000, 500, 90, 90, './img/charmander.png')
+// Pokémons coletáveis
+let item1 = new Item(1400, 150, 90, 90, 'img/pichu.png')
+let item2 = new Item(1700, 350, 90, 90, 'img/froakie.png')
+let item3 = new Item(2000, 500, 90, 90, 'img/charmander.png')
 
 // Fundo
-let fundo = new Fundo(0, 0, 1200, 700, './img/fundo_fase1.png')
+let fundo = new Fundo(0, 0, 1200, 700, 'img/fundo_fase1.png')
 
-// Textos e telas
 let fase_txt = new Text()
 let telas = new Telas()
 
 // Sons
-let fundo_som = new Audio('./img/musica_fundo.mp3')
-let coletar = new Audio('./img/musica_coletar.mp3')
-let batida = new Audio('./img/musica_batida.mp3')
+let fundo_som = new Audio('img/musica_fundo.mp3')
+let coletar = new Audio('img/musica_coletar.mp3')
+let batida = new Audio('img/musica_batida.mp3')
 fundo_som.volume = 0.5
 fundo_som.loop = true
 coletar.volume = 1.0
@@ -33,11 +32,9 @@ batida.volume = 0.5
 coletar.load()
 batida.load()
 
-// Estados do jogo
 let tela = 'menu'
 let fase = 1
 
-// Click nos botões das telas
 document.getElementById('des').addEventListener('click', (e) => {
     let rect = document.getElementById('des').getBoundingClientRect()
     let cx = e.clientX - rect.left
@@ -59,7 +56,6 @@ document.getElementById('des').addEventListener('click', (e) => {
     }
 })
 
-// Inicia ou reinicia o jogo
 function iniciar_jogo() {
     player.vida = 5
     player.pontos = 0
@@ -67,12 +63,10 @@ function iniciar_jogo() {
     player.y = 300
     player.dir = 0
     fase = 1
-    fundo.a = './img/fundo_fase1.png'
-
-    // Volta para os Pokémons da fase 1
-    item1.a = './img/pichu.png'
-    item2.a = './img/froakie.png'
-    item3.a = './img/charmander.png'
+    fundo.a = 'img/fundo_fase1.png'
+    item1.a = 'img/pichu.png'
+    item2.a = 'img/froakie.png'
+    item3.a = 'img/charmander.png'
 
     ;[inimigo1, inimigo2, inimigo3, inimigo4, inimigo5].forEach(i => {
         i.vel = 4
@@ -85,12 +79,11 @@ function iniciar_jogo() {
     fundo_som.play()
 }
 
-// Controles do jogador
 document.addEventListener('keydown', (e) => {
     if (tela === 'jogando') {
         fundo_som.play()
-        if (e.key === 'w' || e.key === 'ArrowUp') player.dir -= 10
-        if (e.key === 's' || e.key === 'ArrowDown') player.dir += 10
+        if (e.key === 'w' || e.key === 'ArrowUp') player.dir = -10
+        if (e.key === 's' || e.key === 'ArrowDown') player.dir = 10
     }
 })
 
@@ -99,7 +92,6 @@ document.addEventListener('keyup', (e) => {
     if (e.key === 's' || e.key === 'ArrowDown') player.dir = 0
 })
 
-// Verifica colisões com pedras e itens
 function colisao() {
     let pedras = [inimigo1, inimigo2, inimigo3, inimigo4, inimigo5]
     pedras.forEach(obj => {
@@ -123,7 +115,6 @@ function colisao() {
     })
 }
 
-// Soma pontos ao passar das pedras
 function pontuacao() {
     let pedras = [inimigo1, inimigo2, inimigo3, inimigo4, inimigo5]
     pedras.forEach(obj => {
@@ -134,28 +125,24 @@ function pontuacao() {
     })
 }
 
-// Verifica troca de fase e evolução dos Pokémons
 function ver_fase() {
     if (player.pontos > 300 && fase === 1) {
         fase = 2
-        fundo.a = './img/fundo_fase2.png'
-        // Evolução: Pikachu, Frogadier, Charmeleon
-        item1.a = './img/pikachu.png'
-        item2.a = './img/frogadier.png'
-        item3.a = './img/charmeleon.png'
+        fundo.a = 'img/fundo_fase2.png'
+        item1.a = 'img/pikachu.png'
+        item2.a = 'img/frogadier.png'
+        item3.a = 'img/charmeleon.png'
         ;[inimigo1, inimigo2, inimigo3, inimigo4, inimigo5].forEach(i => i.vel = 6)
     } else if (player.pontos > 600 && fase === 2) {
         fase = 3
-        fundo.a = './img/fundo_fase3.png'
-        // Evolução: Raichu, Greninja, Charizard
-        item1.a = './img/raichu.png'
-        item2.a = './img/greninja.png'
-        item3.a = './img/charizard.png'
+        fundo.a = 'img/fundo_fase3.png'
+        item1.a = 'img/raichu.png'
+        item2.a = 'img/greninja.png'
+        item3.a = 'img/charizard.png'
         ;[inimigo1, inimigo2, inimigo3, inimigo4, inimigo5].forEach(i => i.vel = 8)
     }
 }
 
-// Verifica condição de vitória
 function ver_vitoria() {
     if (fase === 3 && player.pontos > 1000 && player.vida > 0) {
         tela = 'vitoria'
@@ -163,7 +150,6 @@ function ver_vitoria() {
     }
 }
 
-// Verifica condição de derrota
 function game_over() {
     if (player.vida <= 0) {
         tela = 'derrota'
@@ -171,10 +157,8 @@ function game_over() {
     }
 }
 
-// Desenha a tela atual
 function desenha() {
     des.clearRect(0, 0, 1200, 700)
-
     if (tela === 'menu') {
         telas.desenha_menu()
     } else if (tela === 'manual') {
@@ -201,7 +185,6 @@ function desenha() {
     }
 }
 
-// Atualiza os elementos do jogo
 function atualiza() {
     telas.atualiza()
     if (tela === 'jogando') {
@@ -223,7 +206,6 @@ function atualiza() {
     }
 }
 
-// Loop principal do jogo
 function main() {
     desenha()
     atualiza()

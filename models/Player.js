@@ -49,8 +49,14 @@ class Player extends Obj {
             this.tempo = 0
             this.frame += 1
         }
-        if (this.frame > 4) this.frame = 1
-        this.a = "./img/" + nome + this.frame + ".png"
+        
+        // Ajustado para os seus 4 frames
+        if (this.frame > 4) {
+            this.frame = 1
+        }
+        
+        // Caminho exato para a sua pasta e nomes de arquivo
+        this.a = "img/" + nome + "_frame" + this.frame + ".png"
     }
 }
 
