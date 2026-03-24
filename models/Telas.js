@@ -269,6 +269,7 @@ class Telas {
         des.fillText('Vidas restantes:', 600, 390)
         for (let i = 0; i < vidas; i++) {
             des.font = '24px Arial'
+            des.textAlign = 'center'
             des.fillText('❤️', 490 + i * 40, 420)
         }
 

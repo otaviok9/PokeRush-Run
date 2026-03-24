@@ -15,13 +15,11 @@ let item1 = new Item(1400, 150, 90, 90, 'img/pichu.png')
 let item2 = new Item(1700, 350, 90, 90, 'img/froakie.png')
 let item3 = new Item(2000, 500, 90, 90, 'img/charmander.png')
 
-// Fundo
 let fundo = new Fundo(0, 0, 1200, 700, 'img/fundo_fase1.png')
 
 let fase_txt = new Text()
 let telas = new Telas()
 
-// Sons
 let fundo_som = new Audio('img/musica_fundo.mp3')
 let coletar = new Audio('img/musica_coletar.mp3')
 let batida = new Audio('img/musica_batida.mp3')

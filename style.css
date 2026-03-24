@@ -1,13 +1,13 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Ajuda no cálculo de dimensões */
+    box-sizing: border-box;
 }
 
 body {
     background-image: url('./img/fundo_jogo.png');
     background-size: cover;          /* Faz a imagem cobrir a tela toda */
-    background-position: center;     /* Centraliza a imagem */
+    background-position: center;     
     background-repeat: no-repeat;    /* Impede que a imagem se repita */
     background-attachment: fixed;    /* Deixa o fundo fixo ao rolar */
     color: rgb(186, 186, 186);
