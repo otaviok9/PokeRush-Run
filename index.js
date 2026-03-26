@@ -130,14 +130,14 @@ function ver_fase() {
         item1.a = 'img/pikachu.png'
         item2.a = 'img/frogadier.png'
         item3.a = 'img/charmeleon.png'
-        ;[inimigo1, inimigo2, inimigo3, inimigo4, inimigo5].forEach(i => i.vel = 6)
+        ;[inimigo1, inimigo2, inimigo3, inimigo4, inimigo5].forEach(i => i.vel = 7)
     } else if (player.pontos > 600 && fase === 2) {
         fase = 3
         fundo.a = 'img/fundo_fase3.png'
         item1.a = 'img/raichu.png'
         item2.a = 'img/greninja.png'
         item3.a = 'img/charizard.png'
-        ;[inimigo1, inimigo2, inimigo3, inimigo4, inimigo5].forEach(i => i.vel = 8)
+        ;[inimigo1, inimigo2, inimigo3, inimigo4, inimigo5].forEach(i => i.vel = 9)
     }
 }
 
