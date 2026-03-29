@@ -15,7 +15,7 @@
 ### Descrição
 O jogo desenvolvido consiste em uma experiência 2D em tempo real, inspirada em elementos visuais do universo Pokémon, com foco em mecânicas de desvio e captura de itens. O jogador controla um personagem posicionado no lado esquerdo da tela, podendo se movimentar verticalmente (para cima e para baixo) com o objetivo de evitar obstáculos e capturar Pokémons pelo caminho.
 
-Durante a execução do jogo, diversos objetos são gerados dinamicamente no lado direito da tela e se deslocam em direção ao personagem. Esses objetos são classificados em dois tipos principais: obstáculos e itens coletáveis. Os obstáculos, representados por pedras, causam a perda de uma vida ao colidir com o jogador. Já os itens coletáveis são Pokémons, Pikachu, Greninja e Charizard que ao serem capturados somam pontos e recuperam uma vida do jogador.
+Durante a execução do jogo, diversos objetos são gerados dinamicamente no lado direito da tela e se deslocam em direção ao personagem. Esses objetos são classificados em dois tipos principais: obstáculos e itens coletáveis. Os obstáculos, representados por pedras, causam a perda de uma vida ao colidir com o jogador. Já os itens coletáveis são Pokémons que evoluem a cada fase — começando por Pichu, Froakie e Charmander, evoluindo para Pikachu, Frogadier e Charmeleon, e finalmente para Raichu, Greninja e Charizard — que ao serem capturados somam pontos e recuperam uma vida do jogador.
 
 ### Objetivo
 Sobreviver às 3 fases do jogo desviando de pedras e capturando Pokémons, acumulando pontos e mantendo ao menos 1 vida até o final.
@@ -33,12 +33,12 @@ Jogo de corrida 2D com tema Pokémon. O jogador controla o Ash atravessando trê
 | W ou ↑ | Mover para cima |
 | S ou ↓ | Mover para baixo |
 
-### Coletáveis
-| Item | Efeito |
-|------|--------|
-| Pikachu | +10 pontos e +1 vida |
-| Greninja | +10 pontos e +1 vida |
-| Charlizard | +10 pontos e +1 vida |
+### Coletáveis por Fase
+| Fase | Pokémons | Efeito |
+|------|----------|--------|
+| Fase 1 | Pichu, Froakie, Charmander | +10 pontos e +1 vida |
+| Fase 2 | Pikachu, Frogadier, Charmeleon | +10 pontos e +1 vida |
+| Fase 3 | Raichu, Greninja, Charizard | +10 pontos e +1 vida |
 
 ### Obstáculos
 | Item | Efeito |
@@ -60,11 +60,11 @@ Jogo de corrida 2D com tema Pokémon. O jogador controla o Ash atravessando trê
 - Pedra que passa pela tela: **+5 pontos**
 
 ### Progressão de Fases
-| Fase | Pontos necessários | Velocidade | Cenário |
-|------|--------------------|------------|---------|
-| Fase 1 | 0 pts | 2 | Floresta |
-| Fase 2 | 300 pts | 4 | Frente da caverna |
-| Fase 3 | 600 pts | 6 | Interior da caverna |
+| Fase | Pontos necessários | Velocidade | Cenário | Pokémons |
+|------|--------------------|------------|---------|----------|
+| Fase 1 | 0 pts | 4 | Floresta | Pichu, Froakie, Charmander |
+| Fase 2 | 300 pts | 7 | Frente da caverna | Pikachu, Frogadier, Charmeleon |
+| Fase 3 | 600 pts | 9 | Interior da caverna | Raichu, Greninja, Charizard |
 
 ### Condição de Vitória
 Completar a Fase 3 atingindo 1000 pontos com pelo menos 1 vida restante.
