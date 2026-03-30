@@ -52,11 +52,21 @@ document.getElementById('des').addEventListener('click', (e) => {
         if (clicou(600, 390)) { modo = 2; iniciar_jogo() }
         if (clicou(600, 480)) tela = 'manual'
         if (clicou(600, 570)) tela = 'sobre'
-    } else if (tela === 'manual' || tela === 'sobre') {
-        if (clicou(600, 670) || clicou(600, 620)) tela = 'menu'
+    } else if (tela === 'manual') {
+        if (clicou(600, 670)) tela = 'menu'
+    } else if (tela === 'sobre') {
+        if (clicou(600, 620)) tela = 'menu'
+        // Instagram
+        if (cx > 400 && cx < 800 && cy > 220 && cy < 244) {
+            window.open('https://www.instagram.com/__paulo.otv', '_blank')
+        }
+        // GitHub
+        if (cx > 400 && cx < 800 && cy > 242 && cy < 266) {
+            window.open('https://github.com/otaviok9', '_blank')
+        }
     } else if (tela === 'vitoria' || tela === 'derrota') {
-        if (clicou(600, 520) || clicou(600, 480)) iniciar_jogo() // Ajustado para bater com o visual
-        if (clicou(600, 610) || clicou(600, 570)) tela = 'menu'
+        if (clicou(600, 520) || clicou(600, 510)) iniciar_jogo()
+        if (clicou(600, 610) || clicou(600, 600)) tela = 'menu'
     }
 })
 
@@ -212,7 +222,7 @@ function game_over() {
         fundo_som.pause()
         fundo_som.currentTime = 0
     }
-    if (modo === 2 && (player.vida <= 0 || player2.vida <= 0)) {
+    if (modo === 2 && player.vida <= 0 && player2.vida <= 0) {
         tela = 'derrota'
         fundo_som.pause()
         fundo_som.currentTime = 0

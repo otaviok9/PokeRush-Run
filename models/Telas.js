@@ -83,63 +83,57 @@ class Telas {
         return map[cor] || '#333'
     }
 
-   // Desenha HUD do jogo 
-   desenha_hud(pontos, vidas, fase, p2 = null) {
-    // Barra semitransparente no topo
-    des.fillStyle = 'rgba(0,0,0,0.5)'
-    des.fillRect(0, 0, 1200, 60)
+    // Desenha HUD do jogo
+    desenha_hud(pontos, vidas, fase, p2 = null) {
+        des.fillStyle = 'rgba(0,0,0,0.5)'
+        des.fillRect(0, 0, 1200, 60)
 
-    // Player 1 - corações em cima à esquerda
-    for (let i = 0; i < 5; i++) {
-        des.font = '22px Arial'
-        des.textBaseline = 'middle'
-        des.fillStyle = i < vidas ? '#e53935' : 'rgba(255,255,255,0.2)'
-        des.fillText('❤️', 10 + i * 28, 18)
-    }
-    // Desenha "P1:" apenas se houver um Player 2 (modo coop)
-    if (p2) {
-        des.fillStyle = '#FFD700'
-        des.font = '13px "Press Start 2P"'
-        des.textAlign = 'left'
-        des.textBaseline = 'alphabetic'
-        des.fillText('P1: ' + pontos, 10, 52)
-    }
-    // ------------------
-
-    // Fase no centro
-    des.fillStyle = 'white'
-    des.font = '16px "Press Start 2P"'
-    des.textAlign = 'center'
-    des.fillText('FASE ' + fase, 600, 35)
-
-    // Player 2 e pontuação final
-    if (p2) {
-        // Se houver Player 2, desenha o HUD dele à direita
-        // Corações em cima à direita
+        // Player 1 corações
         for (let i = 0; i < 5; i++) {
             des.font = '22px Arial'
             des.textBaseline = 'middle'
-            des.fillStyle = i < p2.vida ? '#4fc3f7' : 'rgba(255,255,255,0.2)'
-            des.fillText('❤️', 1190 - i * 28, 18)
+            des.fillStyle = i < vidas ? '#e53935' : 'rgba(255,255,255,0.2)'
+            des.fillText('❤️', 10 + i * 28, 18)
         }
-        // Pontos embaixo à direita
-        des.fillStyle = '#4fc3f7'
-        des.font = '13px "Press Start 2P"'
-        des.textAlign = 'right'
-        des.textBaseline = 'alphabetic'
-        des.fillText('P2: ' + p2.pontos, 1190, 52)
-    } else {
-        // Se NÃO houver Player 2 (modo solo), desenha apenas o "PTS:" geral à direita
-        des.fillStyle = '#FFD700'
-        des.font = '16px "Press Start 2P"'
-        des.textAlign = 'right'
-        des.fillText('PTS: ' + pontos, 1180, 35)
-    }
 
-    // Reseta alinhamentos para não bugar outros desenhos
-    des.textBaseline = 'alphabetic'
-    des.textAlign = 'left'
-}
+        // Player 1 pontos
+        if (p2) {
+            des.fillStyle = '#FFD700'
+            des.font = '13px "Press Start 2P"'
+            des.textAlign = 'left'
+            des.textBaseline = 'alphabetic'
+            des.fillText('P1: ' + pontos, 10, 52)
+        }
+
+        // Fase no centro
+        des.fillStyle = 'white'
+        des.font = '16px "Press Start 2P"'
+        des.textAlign = 'center'
+        des.fillText('FASE ' + fase, 600, 35)
+
+        // Player 2
+        if (p2) {
+            for (let i = 0; i < 5; i++) {
+                des.font = '22px Arial'
+                des.textBaseline = 'middle'
+                des.fillStyle = i < p2.vida ? '#4fc3f7' : 'rgba(255,255,255,0.2)'
+                des.fillText('❤️', 1190 - i * 28, 18)
+            }
+            des.fillStyle = '#4fc3f7'
+            des.font = '13px "Press Start 2P"'
+            des.textAlign = 'right'
+            des.textBaseline = 'alphabetic'
+            des.fillText('P2: ' + p2.pontos, 1190, 52)
+        } else {
+            des.fillStyle = '#FFD700'
+            des.font = '16px "Press Start 2P"'
+            des.textAlign = 'right'
+            des.fillText('PTS: ' + pontos, 1180, 35)
+        }
+
+        des.textBaseline = 'alphabetic'
+        des.textAlign = 'left'
+    }
 
     // Flash vermelho ao perder vida
     desenha_flash() {
@@ -222,37 +216,83 @@ class Telas {
         des.fillStyle = '#FFD700'
         des.font = '22px "Press Start 2P"'
         des.textAlign = 'center'
-        des.fillText('ℹ️ SOBRE', 600, 100)
+        des.fillText('ℹ️ SOBRE', 600, 55)
+
+        // Foto do desenvolvedor (círculo)
+        des.strokeStyle = '#4fc3f7'
+        des.lineWidth = 3
+        des.beginPath()
+        des.arc(340, 200, 65, 0, Math.PI * 2)
+        des.stroke()
+        des.fillStyle = 'rgba(79,195,247,0.1)'
+        des.fill()
+
+        let foto = new Image()
+        foto.src = 'img/foto_paulo.png'
+        des.save()
+        des.beginPath()
+        des.arc(340, 200, 63, 0, Math.PI * 2)
+        des.clip()
+        des.drawImage(foto, 277, 137, 126, 126)
+        des.restore()
 
         // Card desenvolvedor com borda
         des.strokeStyle = '#4fc3f7'
         des.lineWidth = 2
-        des.strokeRect(300, 160, 600, 120)
+        des.strokeRect(200, 120, 800, 185)
         des.fillStyle = 'rgba(79,195,247,0.08)'
-        des.fillRect(300, 160, 600, 120)
+        des.fillRect(200, 120, 800, 185)
         des.fillStyle = '#4fc3f7'
         des.font = '11px "Press Start 2P"'
-        des.fillText('👨‍💻 DESENVOLVEDOR', 600, 195)
+        des.textAlign = 'center'
+        des.fillText('👨‍💻 DESENVOLVEDOR', 600, 150)
         des.fillStyle = 'white'
-        des.font = '18px "Press Start 2P"'
-        des.fillText('Paulo Otavio', 600, 245)
+        des.font = '16px "Press Start 2P"'
+        des.fillText('Paulo Otavio', 600, 182)
+        des.fillStyle = 'rgba(255,255,255,0.6)'
+        des.font = '9px "Press Start 2P"'
+        des.fillText('Tecnico em Desenvolvimento de Sistemas', 600, 207)
+        // Instagram clicável
+        des.fillStyle = 'rgba(255,100,200,0.9)'
+        des.font = '9px "Press Start 2P"'
+        des.fillText('📸 @__paulo.otv  ← clique aqui', 600, 232)
+        // GitHub clicável
+        des.fillStyle = 'rgba(255,255,255,0.8)'
+        des.font = '9px "Press Start 2P"'
+        des.fillText('🐙 GitHub: otaviok9  ← clique aqui', 600, 254)
+        des.fillStyle = 'rgba(255,255,255,0.4)'
+        des.font = '9px "Press Start 2P"'
+        des.fillText('Sesi Senai - 2026', 600, 276)
 
         // Card professor com borda
         des.strokeStyle = '#81c784'
         des.lineWidth = 2
-        des.strokeRect(300, 310, 600, 120)
+        des.strokeRect(200, 325, 800, 120)
         des.fillStyle = 'rgba(129,199,132,0.08)'
-        des.fillRect(300, 310, 600, 120)
+        des.fillRect(200, 325, 800, 120)
         des.fillStyle = '#81c784'
         des.font = '11px "Press Start 2P"'
-        des.fillText('🎓 PROFESSOR ORIENTADOR', 600, 345)
+        des.textAlign = 'center'
+        des.fillText('🎓 PROFESSOR ORIENTADOR (PRODUCT OWNER)', 600, 353)
         des.fillStyle = 'white'
-        des.font = '18px "Press Start 2P"'
-        des.fillText('Prof. Carlos', 600, 395)
-
-        des.fillStyle = 'rgba(255,255,255,0.5)'
+        des.font = '16px "Press Start 2P"'
+        des.fillText('Prof. Carlos', 600, 388)
+        des.fillStyle = 'rgba(255,255,255,0.4)'
         des.font = '9px "Press Start 2P"'
-        des.fillText('Programacao Orientada a Objetos', 600, 490)
+        des.fillText('Programacao Orientada a Objetos', 600, 418)
+
+        // Tecnologias
+        des.strokeStyle = '#FFD700'
+        des.lineWidth = 2
+        des.strokeRect(200, 463, 800, 75)
+        des.fillStyle = 'rgba(255,215,0,0.05)'
+        des.fillRect(200, 463, 800, 75)
+        des.fillStyle = '#FFD700'
+        des.font = '10px "Press Start 2P"'
+        des.fillText('🛠️ TECNOLOGIAS: HTML5 | Canvas API | JavaScript ES6+', 600, 492)
+        des.fillStyle = 'rgba(255,255,255,0.4)'
+        des.font = '9px "Press Start 2P"'
+        des.fillText('© 2026 PokéRush Run - Todos os direitos reservados', 600, 520)
 
         this.desenha_botao('VOLTAR', 600, 620, '#FFD700')
         des.textAlign = 'left'
@@ -297,7 +337,7 @@ class Telas {
         des.textAlign = 'left'
     }
 
-    // Tela de derrota 
+    // Tela de derrota
     desenha_derrota(pontosP1, fase, p2 = null) {
         this.desenha_fundo_menu()
 
@@ -318,15 +358,12 @@ class Telas {
         des.fillText('Voce perdeu todas as vidas!', 600, 280)
 
         if (p2) {
-            // Se houver Player 2, mostra os dois pontos
             des.fillStyle = '#FFD700'
             des.font = '14px "Press Start 2P"'
             des.fillText('P1 PONTOS: ' + pontosP1, 600, 330)
-            
             des.fillStyle = '#4fc3f7'
             des.fillText('P2 PONTOS: ' + p2.pontos, 600, 370)
         } else {
-            // Se estiver sozinho, mostra apenas um
             des.fillStyle = '#4fc3f7'
             des.font = '14px "Press Start 2P"'
             des.fillText('PONTOS: ' + pontosP1, 600, 340)
