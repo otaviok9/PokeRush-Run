@@ -39,30 +39,30 @@ class Player extends Obj {
             (this.y + this.h > objeto.y)
     }
 
-    point(objeto) {
-        return objeto.x <= -100
-    }
-
+    // Sistema de animação por frames
     anim(nome) {
         this.tempo += 1
         if (this.tempo > 12) {
             this.tempo = 0
             this.frame += 1
         }
-        
         if (this.frame > 4) {
             this.frame = 1
         }
-                this.a = "img/" + nome + "_frame" + this.frame + ".png"
+        this.a = "img/" + nome + "_frame" + this.frame + ".png"
     }
 }
 
 class Inimigo extends Obj {
     vel = 2
+    ganhouPontoP1 = false // Controle para ponto do Jogador 1
+    ganhouPontoP2 = false // Controle para ponto do Jogador 2
 
     recomeca() {
         this.x = 1300
         this.y = Math.floor(Math.random() * (600 - 50) + 50)
+        this.ganhouPontoP1 = false 
+        this.ganhouPontoP2 = false
     }
 
     mov_inimigo() {
@@ -75,33 +75,26 @@ class Inimigo extends Obj {
 
 class Item extends Obj {
     vel = 3
-
     recomeca() {
         this.x = 1300
         this.y = Math.floor(Math.random() * (600 - 50) + 50)
     }
-
     mov_item() {
         this.x -= this.vel
-        if (this.x <= -100) {
-            this.recomeca()
-        }
+        if (this.x <= -100) this.recomeca()
     }
 }
 
 class Fundo extends Obj {
     mov_fundo() {
         this.x -= 6
-        if (this.x < -60) {
-            this.x = 1300
-        }
+        if (this.x < -1200) this.x = 0
     }
 }
 
 class Text {
     des_text(text, x, y, cor, font) {
         des.fillStyle = cor
-        des.lineWidth = '5'
         des.font = font
         des.fillText(text, x, y)
     }

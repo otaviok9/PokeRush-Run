@@ -8,12 +8,9 @@ class Telas {
 
     // Atualiza animações
     atualiza() {
-        // Animação do brilho do título
         this.brilho += 0.02 * this.brilhoDir
         if (this.brilho >= 1) this.brilhoDir = -1
         if (this.brilho <= 0) this.brilhoDir = 1
-
-        // Flash vermelho diminui
         if (this.flashVermelho > 0) this.flashVermelho -= 0.05
     }
 
@@ -86,35 +83,63 @@ class Telas {
         return map[cor] || '#333'
     }
 
-    // Desenha HUD do jogo (vidas em corações + barra semitransparente)
-    desenha_hud(pontos, vidas, fase) {
-        // Barra semitransparente no topo
-        des.fillStyle = 'rgba(0,0,0,0.5)'
-        des.fillRect(0, 0, 1200, 55)
+   // Desenha HUD do jogo 
+   desenha_hud(pontos, vidas, fase, p2 = null) {
+    // Barra semitransparente no topo
+    des.fillStyle = 'rgba(0,0,0,0.5)'
+    des.fillRect(0, 0, 1200, 60)
 
-        // Corações de vida
-        for (let i = 0; i < 5; i++) {
-            des.font = '24px Arial'
-            des.textBaseline = 'middle'
-            des.fillStyle = i < vidas ? '#e53935' : 'rgba(255,255,255,0.2)'
-            des.fillText('❤️', 20 + i * 35, 27)
-        }
+    // Player 1 - corações em cima à esquerda
+    for (let i = 0; i < 5; i++) {
+        des.font = '22px Arial'
+        des.textBaseline = 'middle'
+        des.fillStyle = i < vidas ? '#e53935' : 'rgba(255,255,255,0.2)'
+        des.fillText('❤️', 10 + i * 28, 18)
+    }
+    // Desenha "P1:" apenas se houver um Player 2 (modo coop)
+    if (p2) {
+        des.fillStyle = '#FFD700'
+        des.font = '13px "Press Start 2P"'
+        des.textAlign = 'left'
         des.textBaseline = 'alphabetic'
+        des.fillText('P1: ' + pontos, 10, 52)
+    }
+    // ------------------
 
-        // Fase
-        des.fillStyle = 'white'
-        des.font = '16px "Press Start 2P"'
-        des.textAlign = 'center'
-        des.fillText('FASE ' + fase, 600, 35)
+    // Fase no centro
+    des.fillStyle = 'white'
+    des.font = '16px "Press Start 2P"'
+    des.textAlign = 'center'
+    des.fillText('FASE ' + fase, 600, 35)
 
-        // Pontos
+    // Player 2 e pontuação final
+    if (p2) {
+        // Se houver Player 2, desenha o HUD dele à direita
+        // Corações em cima à direita
+        for (let i = 0; i < 5; i++) {
+            des.font = '22px Arial'
+            des.textBaseline = 'middle'
+            des.fillStyle = i < p2.vida ? '#4fc3f7' : 'rgba(255,255,255,0.2)'
+            des.fillText('❤️', 1190 - i * 28, 18)
+        }
+        // Pontos embaixo à direita
+        des.fillStyle = '#4fc3f7'
+        des.font = '13px "Press Start 2P"'
+        des.textAlign = 'right'
+        des.textBaseline = 'alphabetic'
+        des.fillText('P2: ' + p2.pontos, 1190, 52)
+    } else {
+        // Se NÃO houver Player 2 (modo solo), desenha apenas o "PTS:" geral à direita
         des.fillStyle = '#FFD700'
         des.font = '16px "Press Start 2P"'
         des.textAlign = 'right'
         des.fillText('PTS: ' + pontos, 1180, 35)
-
-        des.textAlign = 'left'
     }
+
+    // Reseta alinhamentos para não bugar outros desenhos
+    des.textBaseline = 'alphabetic'
+    des.textAlign = 'left'
+}
 
     // Flash vermelho ao perder vida
     desenha_flash() {
@@ -128,14 +153,12 @@ class Telas {
     desenha_menu() {
         this.desenha_fundo_menu()
 
-        // Brilho animado atrás do título
         let alpha = 0.05 + 0.05 * Math.abs(Math.sin(Date.now() / 800))
         des.fillStyle = 'rgba(255,215,0,' + alpha + ')'
         des.beginPath()
         des.arc(600, 150, 250, 0, Math.PI * 2)
         des.fill()
 
-        // Título com brilho animado
         let brilhoAlpha = 0.5 + 0.5 * Math.abs(Math.sin(Date.now() / 800))
         des.fillStyle = '#b39700'
         des.font = 'bold 52px "Press Start 2P"'
@@ -144,15 +167,14 @@ class Telas {
         des.fillStyle = `rgba(255, 215, 0, ${brilhoAlpha})`
         des.fillText('PokéRush Run', 600, 150)
 
-        // Subtítulo
         des.fillStyle = 'rgba(255,255,255,0.7)'
         des.font = '11px "Press Start 2P"'
         des.fillText('Desvie das pedras e capture os Pokémons!', 600, 210)
 
-        // Botões
-        this.desenha_botao('▶ JOGAR', 600, 320, '#FFD700')
-        this.desenha_botao('📖 MANUAL', 600, 420, '#4fc3f7')
-        this.desenha_botao('ℹ️ SOBRE', 600, 520, '#81c784')
+        this.desenha_botao('▶ 1 PLAYER', 600, 300, '#FFD700')
+        this.desenha_botao('👥 2 PLAYERS', 600, 390, '#e53935')
+        this.desenha_botao('📖 MANUAL', 600, 480, '#4fc3f7')
+        this.desenha_botao('ℹ️ SOBRE', 600, 570, '#81c784')
 
         des.textAlign = 'left'
     }
@@ -168,8 +190,7 @@ class Telas {
 
         let linhas = [
             { texto: '🎮 CONTROLES', cor: '#4fc3f7', tamanho: '14px' },
-            { texto: 'W / Seta cima  >>  Mover para cima', cor: 'white', tamanho: '11px' },
-            { texto: 'S / Seta baixo  >>  Mover para baixo', cor: 'white', tamanho: '11px' },
+            { texto: 'P1: W / S  |  P2: Seta cima / baixo', cor: 'white', tamanho: '11px' },
             { texto: '', cor: 'white', tamanho: '11px' },
             { texto: '❤️ VIDAS', cor: '#4fc3f7', tamanho: '14px' },
             { texto: 'Voce comeca com 5 vidas', cor: 'white', tamanho: '11px' },
@@ -180,7 +201,8 @@ class Telas {
             { texto: 'Pedra que passa = +5 pts', cor: 'white', tamanho: '11px' },
             { texto: '', cor: 'white', tamanho: '11px' },
             { texto: '🗺️ FASES', cor: '#4fc3f7', tamanho: '14px' },
-            { texto: 'Fase 1: 0pts  Fase 2: 300pts  Fase 3: 600pts. O jogo acaba quando o usuário chegar a 1000 pontos 👑', cor: 'white', tamanho: '10px' },
+            { texto: 'Fase 1: 0pts  Fase 2: 300pts  Fase 3: 600pts', cor: 'white', tamanho: '10px' },
+            { texto: 'O jogo acaba ao chegar a 1000 pontos 👑', cor: 'white', tamanho: '10px' },
         ]
 
         linhas.forEach((linha, i) => {
@@ -228,7 +250,6 @@ class Telas {
         des.font = '18px "Press Start 2P"'
         des.fillText('Prof. Carlos', 600, 395)
 
-        // Disciplina
         des.fillStyle = 'rgba(255,255,255,0.5)'
         des.font = '9px "Press Start 2P"'
         des.fillText('Programacao Orientada a Objetos', 600, 490)
@@ -241,13 +262,11 @@ class Telas {
     desenha_vitoria(pontos, vidas) {
         this.desenha_fundo_menu()
 
-        // Brilho atrás do título
         des.fillStyle = 'rgba(255,215,0,0.07)'
         des.beginPath()
         des.arc(600, 200, 200, 0, Math.PI * 2)
         des.fill()
 
-        // Título com sombra
         des.fillStyle = '#b39700'
         des.font = '48px "Press Start 2P"'
         des.textAlign = 'center'
@@ -263,7 +282,6 @@ class Telas {
         des.font = '14px "Press Start 2P"'
         des.fillText('PONTOS: ' + pontos, 600, 340)
 
-        // Vidas restantes
         des.fillStyle = 'white'
         des.font = '11px "Press Start 2P"'
         des.fillText('Vidas restantes:', 600, 390)
@@ -279,17 +297,15 @@ class Telas {
         des.textAlign = 'left'
     }
 
-    // Tela de derrota
-    desenha_derrota(pontos, fase) {
+    // Tela de derrota 
+    desenha_derrota(pontosP1, fase, p2 = null) {
         this.desenha_fundo_menu()
 
-        // Brilho atrás do título
         des.fillStyle = 'rgba(229,57,53,0.07)'
         des.beginPath()
         des.arc(600, 200, 200, 0, Math.PI * 2)
         des.fill()
 
-        // Título com sombra
         des.fillStyle = '#7f0000'
         des.font = '48px "Press Start 2P"'
         des.textAlign = 'center'
@@ -301,17 +317,27 @@ class Telas {
         des.font = '11px "Press Start 2P"'
         des.fillText('Voce perdeu todas as vidas!', 600, 280)
 
-        des.fillStyle = '#4fc3f7'
-        des.font = '14px "Press Start 2P"'
-        des.fillText('PONTOS: ' + pontos, 600, 340)
+        if (p2) {
+            // Se houver Player 2, mostra os dois pontos
+            des.fillStyle = '#FFD700'
+            des.font = '14px "Press Start 2P"'
+            des.fillText('P1 PONTOS: ' + pontosP1, 600, 330)
+            
+            des.fillStyle = '#4fc3f7'
+            des.fillText('P2 PONTOS: ' + p2.pontos, 600, 370)
+        } else {
+            // Se estiver sozinho, mostra apenas um
+            des.fillStyle = '#4fc3f7'
+            des.font = '14px "Press Start 2P"'
+            des.fillText('PONTOS: ' + pontosP1, 600, 340)
+        }
 
-        // Fase em que perdeu
         des.fillStyle = 'rgba(255,255,255,0.6)'
         des.font = '11px "Press Start 2P"'
-        des.fillText('Voce chegou ate a fase ' + fase, 600, 395)
+        des.fillText('Voce chegou ate a fase ' + fase, 600, 420)
 
-        this.desenha_botao('JOGAR NOVAMENTE', 600, 480, '#FFD700')
-        this.desenha_botao('MENU', 600, 570, '#81c784')
+        this.desenha_botao('JOGAR NOVAMENTE', 600, 510, '#FFD700')
+        this.desenha_botao('MENU', 600, 600, '#81c784')
 
         des.textAlign = 'left'
     }
