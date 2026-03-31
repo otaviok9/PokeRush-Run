@@ -142,7 +142,8 @@ function colisao() {
         if (player.colid(item)) {
             coletar.currentTime = 0
             coletar.play()
-            player.pontos += 10
+            // GANHA 5 PONTOS EM QUALQUER FASE AO COLETAR
+            player.pontos += 5 
             player.vida = Math.min(player.vida + 1, 5)
             item.recomeca()
         }
@@ -162,7 +163,8 @@ function colisao() {
             if (player2.colid(item)) {
                 coletar.currentTime = 0
                 coletar.play()
-                player2.pontos += 10
+                // GANHA 5 PONTOS EM QUALQUER FASE AO COLETAR
+                player2.pontos += 5
                 player2.vida = Math.min(player2.vida + 1, 5)
                 item.recomeca()
             }
@@ -175,11 +177,21 @@ function pontuacao() {
     let pedras = [inimigo1, inimigo2, inimigo3, inimigo4, inimigo5]
     pedras.forEach(obj => {
         if (obj.x < player.x && !obj.ganhouPontoP1) {
-            player.pontos += 5
+            // REGRA: FASE 1 GANHA 10, FASES 2 E 3 GANHAM 5
+            if (fase === 1) {
+                player.pontos += 10
+            } else {
+                player.pontos += 5
+            }
             obj.ganhouPontoP1 = true
         }
         if (modo === 2 && obj.x < player2.x && !obj.ganhouPontoP2) {
-            player2.pontos += 5
+            // REGRA: FASE 1 GANHA 10, FASES 2 E 3 GANHAM 5
+            if (fase === 1) {
+                player2.pontos += 10
+            } else {
+                player2.pontos += 5
+            }
             obj.ganhouPontoP2 = true
         }
     })
@@ -217,15 +229,18 @@ function ver_vitoria() {
 
 // Game over
 function game_over() {
+    // No modo 1, acaba se o player 1 morrer
     if (modo === 1 && player.vida <= 0) {
-        tela = 'derrota'
-        fundo_som.pause()
-        fundo_som.currentTime = 0
+        tela = 'derrota';
+        fundo_som.pause();
+        fundo_som.currentTime = 0;
     }
-    if (modo === 2 && player.vida <= 0 && player2.vida <= 0) {
-        tela = 'derrota'
-        fundo_som.pause()
-        fundo_som.currentTime = 0
+    
+    // No modo 2, acaba se o player 1 OU o player 2 morrerem
+    if (modo === 2 && (player.vida <= 0 || player2.vida <= 0)) {
+        tela = 'derrota';
+        fundo_som.pause();
+        fundo_som.currentTime = 0;
     }
 }
 
