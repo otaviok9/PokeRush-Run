@@ -125,7 +125,6 @@ Completar a Fase 3 atingindo 1000 pontos com pelo menos 1 vida restante.
 
 - **Desenvolvedor:** Paulo Otávio
 - **Instagram:** [@__paulo.otv](https://www.instagram.com/__paulo.otv)
-- **GitHub:** [otaviok9](https://github.com/otaviok9)
 - **Instituição:** Sesi Senai - 2026
 - **Curso:** Técnico em Desenvolvimento de Sistemas
 - **Professor Orientador:** Professor Carlos
@@ -145,4 +144,4 @@ git clone https://github.com/otaviok9/PokeRush-Run.git
 Abra o arquivo `index.html` diretamente no navegador ou utilize uma extensão como **Live Server** no VS Code.
 
 ### Link de produção
-[Em breve]
+[https://poke-rush-run.vercel.app/]
