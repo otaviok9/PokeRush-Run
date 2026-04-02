@@ -177,7 +177,7 @@ function pontuacao() {
     let pedras = [inimigo1, inimigo2, inimigo3, inimigo4, inimigo5]
     pedras.forEach(obj => {
         if (obj.x < player.x && !obj.ganhouPontoP1) {
-            // REGRA: FASE 1 GANHA 10, FASES 2 E 3 GANHAM 5
+            // regra: FASE 1 GANHA 10, FASES 2 E 3 GANHAM 5
             if (fase === 1) {
                 player.pontos += 10
             } else {
